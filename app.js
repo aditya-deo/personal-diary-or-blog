@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const lodash = require('lodash');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -34,8 +35,13 @@ app.get("/compose", function(req,res){
 
 
 //Using routing params
-app.get("/posts/:routename", function(req,res){
-  console.log(req.params.routename);
+app.get("/posts/:postID", function(req,res){
+  posts.forEach(function(post){
+    if(lodash.lowerCase(post.title) === lodash.lowerCase(req.params.postID)){
+      res.render("post",{post:post});
+    }
+  })
+  
 })
 
 
@@ -50,15 +56,6 @@ app.post("/compose", function(req,res){
   res.redirect("/");
 
 })
-
-
-
-
-
-
-
-
-
 
 
 
