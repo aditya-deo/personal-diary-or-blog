@@ -4,7 +4,7 @@
     
     <% posts.forEach(function(arrayElement){ %>
         <h2><%= arrayElement.title %></h2>
-        <p><%= arrayElement.post.substring(0,100) + "..." %></p>
+        <p><%= arrayElement.content.substring(0,100) + "..." %></p>
         <a href="/posts/<%= arrayElement.title %>" >Read more</a>
     <% }) %>
 
